@@ -19,8 +19,11 @@ const ListView = ({
   return (
     <div>
       <button onClick={() => setActive(!active)}>See {active ? "Past Production Events" : "Recent and Ongoing Production Events"}</button>
+
       <div style={{ background: "palegoldenrod" }}>
         {active && (
+          <>
+          <button>Show Map</button>
           <ul>
             {activeProductions.map(({event_name, event_borough, event_location, street_closure_type, start_date_time, end_date_time }) => (
               <li key={uuidv4()} style={{ marginBottom: '10px' }}>
@@ -35,11 +38,14 @@ const ListView = ({
               </li> 
             ))}
           </ul>
+          </>
         )}
       </div>
       
       <div style={{ background: "limegreen" }}>
         {!active && (
+          <>
+          <button>Show Map</button>
           <ul>
           {pastProductions.map(({ subcategoryname, eventid, category, borough, startdatetime, enddatetime, parkingheld }) => (
             <li key={eventid} style={{ marginBottom: '10px' }}>
@@ -53,6 +59,7 @@ const ListView = ({
             </li>
           ))}
           </ul>
+          </>
         )}
         
       </div>
