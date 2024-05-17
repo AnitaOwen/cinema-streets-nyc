@@ -14,10 +14,17 @@ const App = () => {
   const [activeProductions, setActiveProductions] = useState([]);
   const [pastProductions, setPastProductions] = useState([]);
 
+  // function getAllTrulyActiveProductions(){
+  //   const today = new Date()
+  //   return activeProductions.filter((production) => new Date(production.end_date_time) >= today)
+  // }
+
   useEffect(() => {
-    fetch(`${API}`).then((res) => {
-      res.json().then((data) => setActiveProductions(data));
-    });
+    fetch(`${API}?event_type=Production Event&$order=end_date_time DESC`)
+    .then((res) => res.json())
+    // .then((data) => setActiveProductions(getAllTrulyActiveProductions(data)))
+    .then((data) => setActiveProductions(data))
+    .catch((error) => console.error('Error fetching current productions:', error));
   }, []);
 
   const fetchPastProductions = async () => {
@@ -25,7 +32,7 @@ const App = () => {
       let allPastProductions = [];
       for (let i = 0; i < 5; i++) {
         const data = await fetch(
-          `${PAST_API}?eventtype=Shooting%20Permit&$offset=${i * 1000}&$order=eventid`
+          `${PAST_API}?eventtype=Shooting%20Permit&$offset=${i * 1000}&$order=enddatetime DESC`
         ).then((res) => res.json());
         // console.log(data);
         allPastProductions = allPastProductions.concat(data);
@@ -51,8 +58,8 @@ const App = () => {
           element={
             <ListView
               activeProductions={activeProductions}
-              setActiveProductions={setActiveProductions}
-              setPastProductions={setPastProductions}
+              // setActiveProductions={setActiveProductions}
+              // setPastProductions={setPastProductions}
               pastProductions={pastProductions}
             />
           }
