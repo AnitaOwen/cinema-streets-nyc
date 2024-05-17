@@ -1,5 +1,5 @@
-const Map = () => {
+const Maps = () => {
   return <div style={{ background: "green" }}>Map</div>;
 };
 
-export default Map;
+export default Maps;
