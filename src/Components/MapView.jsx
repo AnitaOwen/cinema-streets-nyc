@@ -1,9 +1,9 @@
-import Map from "./Map";
+import Maps from "./Maps";
 const MapView = () => {
   return (
     <div>
       <div style={{ background: "palegreen" }}>MapView</div>
-      <Map />
+      <Maps />
     </div>
   );
 };
