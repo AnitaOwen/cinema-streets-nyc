@@ -8,6 +8,14 @@ const ListView = ({
   setPastProductions,
 }) => {
   const [active, setActive] = useState(true);
+
+  function formatDateToHumanReadable(dateString) {
+    const date = new Date(dateString);
+    const month = date.getMonth() + 1; // Month is zero-based, so add 1
+    const day = date.getDate();
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
+  }
   return (
     <div>
       <button onClick={() => setActive(!active)}>See {active ? "Past Production Events" : "Recent and Ongoing Production Events"}</button>
@@ -18,8 +26,7 @@ const ListView = ({
               <li key={uuidv4()} style={{ marginBottom: '10px' }}>
                 <div>
                   <h4>({event_borough}) {event_name}</h4>
-                  <p><span>Start Date:</span> {start_date_time}</p>
-                  <p><span>End Date:</span> {end_date_time}</p>
+                  <p><span>Date:</span> {formatDateToHumanReadable(start_date_time)} - {formatDateToHumanReadable(end_date_time)}</p>
                   <p>Street Closure: {street_closure_type}</p>
                   {event_location.split(",").map((location) => (
                     <p key={uuidv4()}>{location}</p>
@@ -40,8 +47,7 @@ const ListView = ({
                 <h4>
                 [{borough}] {category} {subcategoryname !== "Not Applicable" ? ": " + subcategoryname : ""} 
                 </h4>
-                <p><span>Start Date:</span> {startdatetime}</p>
-                <p><span>End Date:</span> {enddatetime}</p>
+                <p><span>Date:</span> {formatDateToHumanReadable(startdatetime)} - {formatDateToHumanReadable(enddatetime)}</p>
                 <p>{parkingheld.split(",")[0]}</p>
               </div>
             </li>
