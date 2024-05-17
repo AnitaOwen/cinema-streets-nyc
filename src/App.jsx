@@ -20,25 +20,25 @@ const App = () => {
     });
   }, []);
 
-  // const fetchPastProductions = async () => {
-  //   try {
-  //     let allPastProductions = [];
-  //     for (let i = 0; i < 5; i++) {
-  //       const data = await fetch(
-  //         `${PAST_API}?$offset=${i * 1000}&$order=:eventid`
-  //       ).then((res) => res.json());
-  //       console.log(data);
-  //       allPastProductions = allPastProductions.concat(data);
-  //       console.log(allPastProductions);
-  //     }
-  //     // setPastProductions(allPastProductions);
-  //   } catch (error) {
-  //     console.error("Error fetching data:", error);
-  //   }
-  // };
-  // useEffect(() => {
-  //   fetchPastProductions();
-  // }, []);
+  const fetchPastProductions = async () => {
+    try {
+      let allPastProductions = [];
+      for (let i = 0; i < 5; i++) {
+        const data = await fetch(
+          `${PAST_API}?eventtype=Shooting%20Permit&$offset=${i * 1000}&$order=eventid`
+        ).then((res) => res.json());
+        // console.log(data);
+        allPastProductions = allPastProductions.concat(data);
+        // console.log(allPastProductions);
+      }
+      setPastProductions(allPastProductions);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  useEffect(() => {
+    fetchPastProductions();
+  }, []);
 
   return (
     <>

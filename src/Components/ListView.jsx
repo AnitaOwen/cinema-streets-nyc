@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
+import { useState } from "react";
 
 const ListView = ({
   activeProductions,
@@ -6,17 +7,30 @@ const ListView = ({
   pastProductions,
   setPastProductions,
 }) => {
-  console.log(activeProductions);
+  const [active, setActive] = useState(true);
   return (
     <div>
-      <div style={{ background: "palegoldenrod" }}>ListView</div>
-      <ul>
-        {activeProductions.map(({ event_name }) => (
-          <li key={uuidv4()}>{event_name}</li>
-        ))}
-      </ul>
-      {/* button for the past filiming locations/ productions */}
-      <button>See Past Filming Locations</button>
+      <button onClick={() => setActive(!active)}>See {active ? "Past" : "Current"} Filming Locations</button>
+      <div style={{ background: "palegoldenrod" }}>
+        {active && (
+          <ul>
+            {activeProductions.map(({event_name}) => (
+              <li key={uuidv4()}>{event_name}</li> 
+            ))}
+          </ul>
+        )}
+      </div>
+      
+      <div style={{ background: "limegreen" }}>
+        {!active && (
+          <ul>
+          {pastProductions.map(({ eventtype, eventid, category }) => (
+            <li key={eventid}>{eventtype} : {category}</li>
+          ))}
+          </ul>
+        )}
+        
+      </div>
     </div>
   );
 };
