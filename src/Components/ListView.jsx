@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
+import { Link } from 'react-router-dom';
 
 const ListView = ({
   activeProductions,
@@ -18,12 +19,13 @@ const ListView = ({
   }
   return (
     <div>
-      <button onClick={() => setActive(!active)}>See {active ? "Past Production Events" : "Recent and Ongoing Production Events"}</button>
+      <button onClick={() => setActive(!active)}>See {active ? "Past Filming Locations" : "Recent and Ongoing Production Events"}</button>
 
-      <div style={{ background: "palegoldenrod" }}>
+      <div style={{ background: "yellow" }}>
         {active && (
           <>
-          <button>View Map</button>
+          <h3>Recent and Ongoing Production Events</h3>
+          <Link to="/map" style={{ color: "red" }}>View Map</Link>
           <ul>
             {activeProductions.map(({event_name, event_borough, event_location, street_closure_type, start_date_time, end_date_time }) => (
               <li key={uuidv4()} style={{ marginBottom: '10px' }}>
@@ -42,10 +44,11 @@ const ListView = ({
         )}
       </div>
       
-      <div style={{ background: "limegreen" }}>
+      <div style={{ background: "lightgreen" }}>
         {!active && (
           <>
-          <button>View Map</button>
+          <h3>Past Filming Locations</h3>
+          <Link to="/map" style={{ color: "red" }}>View Map</Link>
           <ul>
           {pastProductions.map(({ subcategoryname, eventid, category, borough, startdatetime, enddatetime, parkingheld }) => (
             <li key={eventid} style={{ marginBottom: '10px' }}>
