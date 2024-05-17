@@ -1,8 +1,11 @@
-
+import Map from "./Map";
 const MapView = () => {
   return (
-    <div style={{ background: "palegreen" }}>MapView</div>
-  )
-}
+    <div>
+      <div style={{ background: "palegreen" }}>MapView</div>
+      <Map />
+    </div>
+  );
+};
 
-export default MapView
+export default MapView;
