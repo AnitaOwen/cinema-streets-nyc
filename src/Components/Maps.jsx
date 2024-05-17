@@ -1,5 +1,5 @@
 import { useState, useEffect} from "react";
-import { APIProvider, AdvancedMarker, Map, Pin } from "@vis.gl/react-google-maps"
+import { APIProvider, Map } from "@vis.gl/react-google-maps"
 import axios from "axios"
 
 import Markers from "./Markers";
