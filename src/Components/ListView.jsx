@@ -60,7 +60,7 @@ const ListView = ({
 
       {active ? (
         <div className="bg-white shadow-md rounded p-4">
-          <h3 className="text-s font-bold mb-4">Recent and Ongoing Production Events</h3>
+          <h3 className="text-xl font-bold mb-4">Recent and Ongoing Production Events</h3>
           <Link to="/map" className="text-blue-500 hover:underline">View Map</Link>
           <ul className="mt-4">
             {filteredActiveProductions.map(({event_name, event_borough, event_location, street_closure_type, start_date_time, end_date_time }) => (
