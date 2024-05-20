@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 import { Link } from 'react-router-dom';
+import Chart from 'chart.js/auto'
+import DoughnutChart from "./DoughnutChart";
 
 const ListView = ({
   activeProductions,
@@ -10,6 +12,15 @@ const ListView = ({
 }) => {
   const [active, setActive] = useState(true);
   const [selectedBorough, setSelectedBorough] = useState("");
+  const [chart, setChart] = useState(false);
+
+  const chartColors = [
+    '#FFA500', // Orange
+    '#BA55D3', // Medium Orchid
+    '#FFD700', // Gold
+    '#20B2AA', // Light Sea Green
+    '#DC143C', // Crimson
+  ]
 
   const handleBoroughChange = (event) => {
     setSelectedBorough(event.target.value);
@@ -29,6 +40,35 @@ const ListView = ({
     const day = date.getDate();
     const year = date.getFullYear();
     return `${month}/${day}/${year}`;
+  }
+
+  const boroughs = pastProductions.reduce((acc, current) => {
+    if(!acc.includes(current.borough)){
+      acc.push(current.borough)
+    }
+    return acc
+  }, [])
+  // console.log(boroughs)
+  const boroughTotals = []
+  // console.log(pastProductions)
+  for(let borough of boroughs){
+    const count = pastProductions.filter((production) => production.borough === borough)
+    boroughTotals.push(count.length)
+  }
+  // console.log(boroughTotals)
+  
+  const chartData = {
+    labels: boroughs,
+    datasets: [
+      {
+        label: "Number of Productions",
+        backgroundColor: chartColors,
+        hoverBackgroundColor: ['#808080','#808080','#808080','#808080','#808080'],
+        data: boroughTotals,
+        // responsive: true,
+        // maintainAspectRatio: true,
+      },
+    ],
   }
 
   return (
@@ -61,7 +101,8 @@ const ListView = ({
       {active ? (
         <div className="bg-white shadow-md rounded p-4">
           <h3 className="text-xl font-bold mb-4">Recent and Ongoing Production Events</h3>
-          <Link to="/map" className="text-blue-500 hover:underline">View Map</Link>
+          {/* <Link to="/map" className="text-blue-500 hover:underline">View Map</Link> */}
+          
           <ul className="mt-4">
             {filteredActiveProductions.map(({event_name, event_borough, event_location, street_closure_type, start_date_time, end_date_time }) => (
               <li key={uuidv4()} className="mb-4 border-b pb-4">
@@ -80,7 +121,16 @@ const ListView = ({
       ) : (
         <div className="bg-white shadow-md rounded p-4">
           <h3 className="text-xl font-bold mb-4">Past Filming Locations</h3>
-          <Link to="/map" className="text-blue-700 hover:underline">View Map</Link>
+          {/* <Link to="/map" className="text-blue-700 hover:underline">View Map</Link> */}
+          <button 
+          onClick={() => setChart(!chart)} >
+            {chart ? "Hide Chart" : "Display Chart"}
+          </button>
+          {chart && (
+            <div className="chart-wrapper">
+              <DoughnutChart data={chartData} />
+            </div>
+          )}
           <ul className="mt-4">
             {filteredPastProductions.map(({ subcategoryname, eventid, category, borough, startdatetime, enddatetime, parkingheld }) => (
               <li key={eventid} className="mb-4 border-b pb-4">
