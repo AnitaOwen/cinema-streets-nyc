@@ -1,9 +1,7 @@
-
+import Carousel from "./Carousel";
 
 const LandingPage = () => {
-  return (
-    <div style={{ background: "palevioletred" }}>LandingPage</div>
-  )
-}
+  return <Carousel />;
+};
 
-export default LandingPage
+export default LandingPage;

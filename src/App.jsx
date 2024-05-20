@@ -17,16 +17,20 @@ const App = () => {
   useEffect(() => {
     fetch(`${API}?event_type=Production Event&$order=end_date_time DESC`)
       .then((res) => res.json())
+
       .then((data) => setActiveProductions(data))
       .catch((error) => console.error('Error fetching current productions:', error));
   }, [API]);
+
 
   const fetchPastProductions = async () => {
     try {
       let allPastProductions = [];
       for (let i = 0; i < 5; i++) {
         const data = await fetch(
-          `${PAST_API}?eventtype=Shooting%20Permit&$offset=${i * 1000}&$order=enddatetime DESC`
+          `${PAST_API}?eventtype=Shooting%20Permit&$offset=${
+            i * 1000
+          }&$order=enddatetime DESC`
         ).then((res) => res.json());
         allPastProductions = allPastProductions.concat(data);
       }
