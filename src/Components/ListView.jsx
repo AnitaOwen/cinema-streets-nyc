@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Chart from "chart.js/auto";
 import DoughnutChart from "./DoughnutChart";
+import "../App.css"
 
 const ListView = ({
   activeProductions,
@@ -163,11 +164,13 @@ const ListView = ({
           >
             {chart ? "Hide Chart" : "Display Chart"}
           </button>
-          {chart && (
-            <div className="chart-wrapper">
-              <DoughnutChart data={chartData} />
-            </div>
-          )}
+          <div className="chart-container">
+            {chart && (
+              <div className="chart-wrapper">
+                <DoughnutChart data={chartData} />
+              </div>
+            )}
+          </div>
           <ul className="mt-4">
             {filteredPastProductions.map(
               ({

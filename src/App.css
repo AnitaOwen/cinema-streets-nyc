@@ -1,0 +1,15 @@
+.chart-wrapper{
+    height: 400px;
+    width:700px;
+    position: relative; 
+    padding: 30px
+}
+.chart{
+    width: 100%;
+    height: 100%;
+    
+}
+.chart-container{
+   display: flex;
+   justify-content: center;
+}
