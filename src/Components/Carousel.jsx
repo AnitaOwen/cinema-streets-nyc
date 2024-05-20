@@ -79,7 +79,7 @@ const Carousel = () => {
   }, [count, forward, images.length]);
 
   return (
-    <div className="bg-red-900 border border-white">
+    <div className>
       <div className="carousel-container">
         <div className="images-container">
           {images.map((image, index) => (
