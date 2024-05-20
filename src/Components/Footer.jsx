@@ -9,7 +9,6 @@ const Footer = () => {
           <p>&copy; 2024 Team V</p>
         </div>
         <div>
-          <Link to="/about" className="text-white hover:text-gray-300 mr-4">About</Link>
           <Link to="/contact" className="text-white hover:text-gray-300">Contact Us</Link>
         </div>
       </div>

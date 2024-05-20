@@ -11,8 +11,8 @@ const NavBar = () => {
   return (
     <nav className="bg-red-900 p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-white text-lg font-bold">
-          Cinema Streets NYC
+        <Link to="/" className="inline-block text-white text-lg font-bold bg-green-600 py-2 px-4 border-4 border-white rounded-md">
+          CINEMA STREETS NYC
         </Link>
         <div className="block lg:hidden">
           <button onClick={toggleMenu} className="text-white focus:outline-none">
