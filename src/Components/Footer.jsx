@@ -9,10 +9,19 @@ const Footer = () => {
           <p>&copy; 2024 Team V</p>
         </div>
         <div>
+          <a
+            className=" block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-4"
+            href="https://www.readersdigest.ca/travel/world/new-york-city-filming-locations/"
+            target="/blank"
+          >
+            More
+          </a>
+        </div>
+        {/* <div>
           <Link to="/contact" className="text-white hover:text-gray-300">
             Contact Us
           </Link>
-        </div>
+        </div> */}
       </div>
     </footer>
   );

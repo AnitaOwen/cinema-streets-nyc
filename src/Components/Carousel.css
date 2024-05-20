@@ -9,6 +9,7 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  margin-left: 0;
 }
 
 .images-container {
@@ -16,7 +17,8 @@
   height: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  margin-left: 0;
+  /* justify-content: flex-start; */
 }
 .images-container > .image {
   width: 10%;
@@ -36,7 +38,7 @@ button {
 .get-started-btn {
   position: absolute;
   z-index: 10;
-  top: 300px;
+  top: 350px;
   left: 50vw;
   font-size: 22px;
   border: 2px solid rgb(128, 0, 32);

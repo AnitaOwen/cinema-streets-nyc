@@ -59,12 +59,12 @@ const NavBar = () => {
             >
               Home
             </Link>
-            <Link
+            {/* <Link
               to="/map"
               className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-4"
             >
               Map
-            </Link>
+            </Link> */}
             <Link
               to="/list"
               className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-300 mr-4"
@@ -77,15 +77,6 @@ const NavBar = () => {
             >
               About
             </Link>
-          </div>
-          <div>
-            <a
-              className="ml-4"
-              href="https://www.readersdigest.ca/travel/world/new-york-city-filming-locations/"
-              target="/blank"
-            >
-              More
-            </a>
           </div>
         </div>
       </div>
